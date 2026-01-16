@@ -32,4 +32,10 @@ public class MedicoController {
                 DadosListagemMedico::new
         );
     }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosCadastroMedico dados) {
+
+    }
 }
