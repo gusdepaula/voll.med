@@ -17,17 +17,34 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Consulta {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medico.id")
+    @JoinColumn(name = "medico_id") // Corrigido de "medico.id" para "medico_id"
     private Medico medico;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "paciente.id")
+    @JoinColumn(name = "paciente_id") // Corrigido de "paciente.id" para "paciente_id"
     private Paciente paciente;
 
     private LocalDateTime data;
+
+    @Column(name = "motivo_cancelamento")
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelamento motivoCancelamento;
+
+    // Adicione este construtor manual para resolver o erro do "new Consulta"
+    public Consulta(Long id, Medico medico, Paciente paciente, LocalDateTime data) {
+        this.id = id;
+        this.medico = medico;
+        this.paciente = paciente;
+        this.data = data;
+    }
+
+    public void cancelar(MotivoCancelamento motivo) {
+        this.motivoCancelamento = motivo;
+    }
 }
