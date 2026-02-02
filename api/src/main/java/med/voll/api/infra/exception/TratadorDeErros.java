@@ -24,10 +24,11 @@ public class TratadorDeErros {
         ).toList());
     }
 
-    @ExceptionHandler(ValidcaoException.class)
+    @ExceptionHandler(ValidacaoException.class)
     public ResponseEntity tratarErroRegraNegocio(ValidacaoException exception){
         return ResponseEntity.badRequest().body(exception.getMessage());
     }
+
 
     private record DadosErrosValidacao(String campo, String mensagem){
         public DadosErrosValidacao(FieldError erro){
