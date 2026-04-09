@@ -5,14 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.domain.consulta.Consulta;
 import med.voll.api.domain.endereco.Endereco;
+
+import java.util.List;
+import java.util.Objects;
 
 @Table(name = "pacientes")
 @Entity(name = "Paciente")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class Paciente {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +32,8 @@ public class Paciente {
 
     private Boolean ativo;
 
+    @Transient
+    public List<Consulta> consultas;
     public Paciente(DadosCadastroPaciente dados) {
         this.ativo = true;
         this.nome = dados.nome();
@@ -53,5 +58,9 @@ public class Paciente {
 
     public void excluir() {
         this.ativo = false;
+    }
+
+    public List<Consulta> consultas(){
+        return consultas();
     }
 }
