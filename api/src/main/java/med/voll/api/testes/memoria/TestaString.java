@@ -13,12 +13,11 @@ public class TestaString {
         valor1 = valor1 + "Programção";
         System.out.println(valor1);
 
-        String resultado = "";
-        for (int i = 0; i <=100; i++) {
-            resultado = resultado + i + " ";
+        StringBuilder resultado = new StringBuilder();
+        for (int i = 0; i <= 100; i++) {
+            resultado.append(i).append(" ");
         }
         System.out.println(resultado);
-
 
     }
 }
